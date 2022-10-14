@@ -107,6 +107,8 @@ If you'd like to use `raleigh` as a boilerplate for your next server-side applic
 tag `v0.1.0`, change all instances of `raleigh` and `Raleigh` to the desired name and get to work. There's also a
 release for this tag on [GitHub releases](https://github.com/sourceweaver/raleigh/releases/tag/v0.1.0) which includes a tarball of the source code.
 
+If you'd like to browse the repo at this point, visit the [relevant tree](https://github.com/sourceweaver/raleigh/tree/2facc47c22e8780ff794464c0f86310b4a49607b).
+
 ## License
 
 `raleigh` is released under `AGPL-3.0`.
