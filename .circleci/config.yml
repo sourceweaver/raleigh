@@ -1,29 +1,48 @@
 version: 2.1
+orbs:
+  snyk: snyk/snyk@1.2.3
+
+defaults: &defaults
+  docker:
+    - image: crystallang/crystal:1.6.0-alpine
+  resource_class: large
+
+aliases:
+  - &step_install_sys_deps
+    run: apk add --update --no-cache --force-overwrite nodejs npm make
+  - &step_install_srv_deps
+    run: shards install
+  - &step_install_clt_deps
+    run: cd src && npm ci
 
 jobs:
-  run-tests:
+  scan-build-container:
     docker:
-      - image: crystallang/crystal:1.6.0-alpine
+      - image: cimg/base:2022.09
     resource_class: large
     steps:
+      - snyk/scan:
+          docker-image-name: crystallang/crystal:1.6.0-alpine
+  lint:
+    <<: *defaults
+    steps:
       - checkout
-      - run:
-          name: "Install system dependencies"
-          command: apk add --update --no-cache --force-overwrite nodejs npm make
-      - run:
-          name: "Install server dependencies"
-          command: shards install
-      - run:
-          name: "Install client dependencies"
-          command: |
-            cd src
-            npm i
+      - *step_install_sys_deps
+      - *step_install_srv_deps
+      - *step_install_clt_deps
       - run:
           name: "Lint server"
           command: make lint/server
       - run:
           name: "Lint client"
           command: make lint/server
+  test:
+    <<: *defaults
+    steps:
+      - checkout
+      - *step_install_sys_deps
+      - *step_install_srv_deps
+      - *step_install_clt_deps
       - run:
           name: "Run tests"
           command: |
@@ -32,8 +51,28 @@ jobs:
       - run:
           name: "Build project"
           command: make
-
+  build:
+    <<: *defaults
+    steps:
+      - checkout
+      - *step_install_sys_deps
+      - *step_install_srv_deps
+      - *step_install_clt_deps
+      - run:
+          name: "Build project"
+          command: make
 workflows:
-  test:
+  test_and_build:
     jobs:
-      - run-tests
+      - scan-build-container
+      - lint:
+          requires:
+            - scan-build-container
+      - test:
+          requires:
+            - scan-build-container
+      - build:
+          requires:
+            - lint
+            - test
+
