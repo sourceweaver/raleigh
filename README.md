@@ -4,6 +4,20 @@
 
 [![Build Status](https://dl.circleci.com/status-badge/img/gh/sourceweaver/raleigh/tree/master.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/sourceweaver/raleigh/tree/master)
 
+## Table of Contents
+
+1. [Requirements](#requirements)
+2. [Workflow](#workflow)
+   1. [Development](#development)
+   2. [Test and Lint](#test-and-lint)
+   3. [Format](#format)
+   4. [Production](#production)
+   5. [Clean-up](#clean-up)
+   6. [Documentation](#documentation)
+   7. [Playground](#playground)
+3. [Using `raleigh` as a template](#using-raleigh-as-a-template)
+4. [License](#license)
+
 ## Requirements
 
 You'll need the following on your system:
@@ -52,7 +66,7 @@ a list of *some* of the commands that you'll use regularly in the next sections.
 > injected to the environment. Add the variables that your app needs to this file. Note that this file
 > is not checked into VCS. You can use `./config/dev.env.example` as a guide.
 
-### Test & Lint
+### Test and Lint
 
 + `make run/tests` to run Crystal spec.
 + `make lint/server` to lint `cr` files.
