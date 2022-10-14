@@ -31,7 +31,7 @@ jobs:
             # make run/tests
       - run:
           name: "Build project"
-          command: make build/all
+          command: make
 
 workflows:
   test:

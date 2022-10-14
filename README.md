@@ -1,6 +1,6 @@
 # raleigh
 
-## Build Status
+## Status
 
 [![Build Status](https://dl.circleci.com/status-badge/img/gh/sourceweaver/raleigh/tree/master.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/sourceweaver/raleigh/tree/master)
 
@@ -15,7 +15,7 @@
    5. [Clean-up](#clean-up)
    6. [Documentation](#documentation)
    7. [Playground](#playground)
-3. [Using `raleigh` as a template](#using-raleigh-as-a-template)
+3. [Using `raleigh` as a project template](#using-raleigh-as-a-project-template)
 4. [License](#license)
 
 ## Requirements
@@ -101,10 +101,10 @@ You can then run `PRODUCTION=true ./raleigh` to start the application in product
 
 + `make playground/serve` to serve Crystal playground.
 
-## Using `raleigh` as a template
+## Using `raleigh` as a project template
 
-If you'd like to use `raleigh` as a boilerplate for your next application, you can clone the repo at the
-tag `v0.1.0`.
+If you'd like to use `raleigh` as a boilerplate for your next server-side application, you can clone the repo at the
+tag `v0.1.0`, change all instances of `raleigh` and `Raleigh` to the desired name and get to work.
 
 ## License
 

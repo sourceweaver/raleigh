@@ -13,7 +13,7 @@ DOCS_DIR  = docs
 DOCS_PORT = 1337
 PLAY_PORT = 1338
 
-.DEFAULT_GOAL := build
+.DEFAULT_GOAL := build/all
 # Calling dev_env will load "./config/dev.env"     #
 # And this will make all ENV variables you defined #
 # accessible to your program                       #
@@ -88,8 +88,8 @@ lint/client:
 .PHONY: build/client
 build/client:
 	cd $(CLIENT_SRC_DIR) && npm run build
-.PHONY: build
 
+.PHONY: build/server
 build/server:
 	mkdir $(SERVER_BLD_DIR)
 	crystal build $(ENTRY_POINT) -o $(SERVER_BLD_DIR)/$(PROJECT_NAME) --no-debug --release --progress

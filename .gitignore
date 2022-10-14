@@ -1,4 +1,4 @@
-# project dependencies
+# crystal
 lib/
 .shards/
 *.dwarf
@@ -8,13 +8,15 @@ docs
 playground
 exp
 
-# web
+# client
 .log
+.cache
 .parcel-cache
 node_modules
 
 # build
-dist
+build/
+dist/
 
 # secrets
 *.env
