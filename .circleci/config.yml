@@ -1,0 +1,33 @@
+version: 2.1
+
+jobs:
+  run-tests:
+    docker:
+      - image: crystallang/crystal:1.6.0-alpine
+    resource_class: large
+    steps:
+      - checkout
+      - run:
+          name: "Install server dependencies"
+          command: shards install
+      - run:
+          name: "Install client dependencies"
+          command: |
+            cd src
+            npm i
+      - run:
+          name: "Lint server"
+          command: make lint/server
+      - run:
+          name: "Lint client"
+          command: make lint/server
+      - run:
+          name: "Run tests"
+          command: make run/tests
+      - run:
+          name: "Build project"
+          command: make build/all
+workflows:
+  test:
+    jobs:
+      - run-tests

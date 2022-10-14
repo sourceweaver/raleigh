@@ -1,0 +1,1 @@
+{"mappings":"AAEA","sources":["index.scss"],"sourcesContent":["@charset 'utf-8';\n\nhtml {\n    background-color: hotpink;\n}\n"],"names":[],"version":3,"file":"index.css.map","sourceRoot":"../../"}

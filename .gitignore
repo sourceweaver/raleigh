@@ -1,0 +1,24 @@
+# project dependencies
+lib/
+.shards/
+*.dwarf
+
+# docs, playground, experimental
+docs
+playground
+exp
+
+# web
+.log
+.parcel-cache
+node_modules
+
+# build
+dist
+
+# secrets
+*.env
+
+# misc.
+logs
+*.log
