@@ -14,11 +14,11 @@ You'll need the following on your system:
 + `npm` version `>=8.5.0`
 
 The tool that `raleigh` uses to watch files for changes is called `reflex` and it's a zero
-dependency Go tool that weighs ~3MBs. You can learn more about `reflex` in it's official
+dependency Go tool that weighs ~3MB. You can learn more about `reflex` in it's official
 [repository](https://github.com/cespare/reflex).
 
-The project will use the `reflex` binary which is shipped in the `./bin` directory. If you
-want to fetch `reflex` from source and build it, make sure you use  `reflex` version `0.3.1`
+The project uses the `reflex` binary which is shipped in the `./bin` directory. If you
+want to fetch `reflex` from source and build it yourself, make sure you use `reflex` version `0.3.1`
 and place the binary in `./bin` directory.
 
 ## Workflow
@@ -86,7 +86,6 @@ You can then run `PRODUCTION=true ./raleigh` to start the application in product
 ### Playground
 
 + `make playground/serve` to serve Crystal playground.
-
 
 ## Using `raleigh` as a template
 

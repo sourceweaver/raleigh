@@ -6,50 +6,49 @@ require "./views/renderer"
 # TODO: Rewrite this file with the router you'd like to use once you
 # start a project using this template.
 
-  # HomeHandler is the controller for the route:
-  # `GET: /`
-  class HomeHandler
-    include HTTP::Handler
+# HomeHandler is the controller for the route:
+# `GET: /`
+class HomeHandler
+  include HTTP::Handler
 
-    def call(context : HTTP::Server::Context)
-      context.response.content_type = "text/html"
-      context.response.status_code = 200
-      context.response.print render_page "pages/home", "default", nil
+  def call(context : HTTP::Server::Context)
+    context.response.content_type = "text/html"
+    context.response.status_code = 200
+    context.response.print render_page "pages/home", "default", nil
+  end
+end
+
+# ErrorNotFoundHandler is the controller for the case:
+# `Error: 404 Page Not Found`
+class ErrorNotFoundHandler
+  include HTTP::Handler
+
+  def call(context : HTTP::Server::Context)
+    context.response.content_type = "text/html"
+    context.response.status_code = 404
+    context.response.print "No such route as #{context.request.path}"
+  end
+end
+
+# Router is a simple router that matches a handler based
+# on the request path.
+class Router
+  include HTTP::Handler
+
+  def route(path : String) : HTTP::Handler
+    case path
+    when "/"
+      HomeHandler.new
+    else
+      ErrorNotFoundHandler.new
     end
   end
 
-  # ErrorNotFoundHandler is the controller for the case:
-  # `Error: 404 Page Not Found`
-  class ErrorNotFoundHandler
-    include HTTP::Handler
-
-    def call(context : HTTP::Server::Context)
-      context.response.content_type = "text/html"
-      context.response.status_code = 404
-      context.response.print "No such route as #{context.request.path}"
-    end
+  def call(context : HTTP::Server::Context)
+    handler = route(context.request.path)
+    handler.call(context)
   end
-
-  # Router is a simple router that matches a handler based
-  # on the request path.
-  class Router
-    include HTTP::Handler
-
-    def route(path : String) : HTTP::Handler
-      case path
-      when "/"
-        HomeHandler.new
-      else
-        ErrorNotFoundHandler.new
-      end
-    end
-
-    def call(context : HTTP::Server::Context)
-      handler = route(context.request.path)
-      handler.call(context)
-    end
-  end
-
+end
 
 # start_app takes in an `AppConfig` as a *config* parameter,
 # populates config consumers, registers routes and runs
