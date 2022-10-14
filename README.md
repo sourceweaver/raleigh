@@ -39,7 +39,7 @@ cd src && npm i
 
 
 You're now ready to work on the project. All the commands available reside in the `Makefile`. You'll find
-a list of *some* of the commands that you'll use regularly in the next esections.
+a list of *some* of the commands that you'll use regularly in the next sections.
 
 ### Development
 

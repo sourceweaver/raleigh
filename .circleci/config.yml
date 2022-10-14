@@ -8,6 +8,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: "Install system dependencies"
+          command: apk add --update --no-cache --force-overwrite nodejs npm make
+      - run:
           name: "Install server dependencies"
           command: shards install
       - run:
@@ -27,6 +30,7 @@ jobs:
       - run:
           name: "Build project"
           command: make build/all
+
 workflows:
   test:
     jobs:
