@@ -1,71 +1,59 @@
 require "http/server"
 
+require "athena-routing"
+
+require "./core/http/error_handler"
+require "./config/app"
+require "./controllers/home"
+require "./types/types"
 require "./views/renderer"
 
-# The server example used in this file is for demonstration purposes.
-# TODO: Rewrite this file with the router you'd like to use once you
-# start a project using this template.
+module Raleigh
+  # `App` class contains the logic of initializing services, controllers,
+  # routers, sub-routers, loggers and registering all handlers and routes.
+  # As such It's the outer most layer of the dependency chain.
+  class App
+    getter server : HTTP::Server
+    getter config : Config::App
 
-# HomeHandler is the controller for the route:
-# `GET: /`
-class HomeHandler
-  include HTTP::Handler
+    def initialize(@config)
+      # Initialize router:
+      router = ART::RoutingHandler.new bubble_exceptions: true
 
-  def call(context : HTTP::Server::Context)
-    context.response.content_type = "text/html"
-    context.response.status_code = 200
-    context.response.print render_page "pages/home", "default", nil
-  end
-end
+      # Initialize controllers:
+      home_ctrl = Controllers::Home.new
 
-# ErrorNotFoundHandler is the controller for the case:
-# `Error: 404 Page Not Found`
-class ErrorNotFoundHandler
-  include HTTP::Handler
+      # Register routes:
+      router.add "home", ART::Route.new("/", methods: "GET"), &->home_ctrl.render(Ctx, Params)
 
-  def call(context : HTTP::Server::Context)
-    context.response.content_type = "text/html"
-    context.response.status_code = 404
-    context.response.print "No such route as #{context.request.path}"
-  end
-end
+      # Register handlers:
+      handlers = [] of HTTP::Handler
+      handlers << Core::Http::ErrorHandler.new
+      handlers << HTTP::LogHandler.new
+      handlers << HTTP::CompressHandler.new if @config.is_prod
+      handlers << HTTP::StaticFileHandler.new @config.public_dir, true, false
+      handlers << router.compile
 
-# Router is a simple router that matches a handler based
-# on the request path.
-class Router
-  include HTTP::Handler
+      @server = HTTP::Server.new(handlers)
+      @server.bind_tcp @config.server_host, @config.server_port
+    end
 
-  def route(path : String) : HTTP::Handler
-    case path
-    when "/"
-      HomeHandler.new
-    else
-      ErrorNotFoundHandler.new
+    # Starts the application server using the provided `Config::App`.
+    def start
+      Log.info { "Raleigh is starting up..." }
+      Log.info { "Production mode enabled? #{@config.is_prod}" }
+      Log.info { "Serving public directory: #{@config.public_dir}" }
+      Log.info { "Server listening on http://#{@config.server_host}:#{config.server_port}" }
+
+      @server.listen
+    end
+
+    # Stops the application server.
+    def stop
+      if server = @server
+        Log.info { "Raleigh is stopping..." }
+        server.close
+      end
     end
   end
-
-  def call(context : HTTP::Server::Context)
-    handler = route(context.request.path)
-    handler.call(context)
-  end
-end
-
-# start_app takes in an `AppConfig` as a *config* parameter,
-# populates config consumers, registers routes and runs
-# the application server.
-def start_app(config : Config::App)
-  handlers = [] of HTTP::Handler
-  handlers << HTTP::ErrorHandler.new
-  handlers << HTTP::LogHandler.new
-  handlers << HTTP::CompressHandler.new if config.is_prod
-  handlers << HTTP::StaticFileHandler.new config.public_dir, true, false
-  handlers << Router.new
-
-  server = HTTP::Server.new(handlers)
-  server.bind_tcp config.server_host, config.server_port
-
-  p "Running in production mode? #{config.is_prod}"
-  p "Serving static assets from: #{config.public_dir}"
-  p "Server starting to listen on http://#{config.server_host}:#{config.server_port}"
-  server.listen
 end

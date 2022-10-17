@@ -16,7 +16,7 @@ PLAY_PORT = 1338
 .DEFAULT_GOAL := build/all
 # Calling dev_env will load "./config/dev.env"     #
 # And this will make all ENV variables you defined #
-# accessible to your program                       #
+# accessi
 define dev_env
 	$(eval include ./config/.dev.env)
 	@echo "Loading dev environment..."
@@ -70,7 +70,7 @@ fmt/client:
 ## Commands            ##
 
 .PHONY: run/tests
-run/tests:
+run/tests: build/client
 	crystal spec
 
 .PHONY: lint/server
@@ -97,7 +97,6 @@ build/server:
 .PHONY: build/all
 build/all: clean build/client build/server
 	cp -R $(APP_ASSETS_DIR) $(SERVER_BLD_DIR)
-
 
 ## Clean-up             ##
 ## Commands             ##

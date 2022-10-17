@@ -1,0 +1,14 @@
+version: 2.0
+shards:
+  athena-routing:
+    git: https://github.com/athena-framework/routing.git
+    version: 0.1.3+git.commit.c23a575b73a049e2edb559ef9e4eec5e3fa78455
+
+  radix:
+    git: https://github.com/luislavena/radix.git
+    version: 0.4.1
+
+  router:
+    git: https://github.com/sourceweaver/router.git
+    version: 0.1.2
+
