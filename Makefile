@@ -48,7 +48,7 @@ playground/serve:
 .PHONY: watch/server
 watch/server:
 	$(call dev_env)
-	bin/reflex --decoration=fancy -r '\.(cr|ecr)$/' -s -- sh -c "crystal run $(ENTRY_POINT) --progress"
+	bin/reflex -R 'node_modules' -R '.parcel-cache' -R 'assets' --decoration=fancy -r '\.(cr|ecr)$/' -s -- sh -c "crystal run $(ENTRY_POINT) --progress"
 
 .PHONY: watch/client
 watch/client:

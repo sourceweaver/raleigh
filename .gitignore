@@ -1,6 +1,6 @@
 # crystal
-lib/
-.shards/
+lib
+.shards
 *.dwarf
 
 # docs, playground, experimental
@@ -14,8 +14,8 @@ exp
 node_modules
 
 # build
-build/
-dist/
+build
+dist
 
 # secrets
 *.env
