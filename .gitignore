@@ -9,7 +9,6 @@ playground
 exp
 
 # client
-.log
 .cache
 .parcel-cache
 node_modules
@@ -22,5 +21,6 @@ dist/
 *.env
 
 # misc.
+.log
 logs
 *.log
