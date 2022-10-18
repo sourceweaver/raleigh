@@ -1,7 +1,7 @@
 require "./app"
 
 module Raleigh
-  VERSION = "0.1.0"
+  VERSION = "0.1.2"
 
   # Builds and returns a `Config:App` struct. Some values are obtained by
   # environment variables, and their inexistence will cause an exception

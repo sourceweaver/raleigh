@@ -1,6 +1,6 @@
 {
   "name": "raleigh",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "scripts": {
     "build": "NODE_ENV=production parcel build ./src/index.js --no-cache --no-source-maps --no-content-hash --dist-dir ./src/assets/build",
     "watch": "rm -rf .parcel-cache && parcel watch ./src/index.js --dist-dir ./src/assets/build",

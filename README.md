@@ -105,8 +105,8 @@ You can then run `PRODUCTION=true ./raleigh` to start the application in product
 ## Using `raleigh` as a project template
 
 If you'd like to use `raleigh` as a boilerplate for your next server-side application, you can clone the repo at the
-tag `v0.1.0`, change all instances of `raleigh` and `Raleigh` to the desired name and get to work. There's also a
-release for this tag on [GitHub releases](https://github.com/sourceweaver/raleigh/releases/tag/v0.1.0) which includes a tarball of the source code.
+tag `v0.1.1`, change all instances of `raleigh` and `Raleigh` to the desired name and get to work. There's also a
+release for this tag on [GitHub releases](https://github.com/sourceweaver/raleigh/releases/tag/v0.1.1) which includes a tarball of the source code.
 
 If you'd like to browse the repo at this point, visit the [relevant tree](https://github.com/sourceweaver/raleigh/tree/2facc47c22e8780ff794464c0f86310b4a49607b).
 
