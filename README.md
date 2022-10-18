@@ -49,7 +49,7 @@ shards install
 2. Install client dependencies
 
 ``` shell
-cd src && npm i
+npm i
 ```
 
 
