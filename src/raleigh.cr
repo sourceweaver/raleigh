@@ -30,12 +30,14 @@ module Raleigh
   # Run calls `#build_config` and if successful, calls `App#start` with the
   # configuration it obtained.
   def self.run
-    config = build_config
-    # rescue ex
-    # Log.fatal { "Error: you have not provided required environment variable\n #{ex.message}" }
-
-    app = App.new config
-    app.start
+    begin
+      config = build_config
+    rescue ex
+      Log.fatal { "Error: you have not provided required environment variable\n #{ex.message}" }
+    else
+      app = App.new config
+      app.start
+    end
   end
 
   run
