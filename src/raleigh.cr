@@ -31,11 +31,11 @@ module Raleigh
   # configuration it obtained.
   def self.run
     config = build_config
-  rescue ex
-    Log.fatal { "Error: you have not provided required environment variable\n #{ex.message}" }
+    # rescue ex
+    # Log.fatal { "Error: you have not provided required environment variable\n #{ex.message}" }
 
-    app = App.new config if config
-    app.try(&.start)
+    app = App.new config
+    app.start
   end
 
   run

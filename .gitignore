@@ -12,6 +12,7 @@ exp
 .cache
 .parcel-cache
 node_modules
+.log
 
 # build
 build
@@ -21,6 +22,5 @@ dist
 *.env
 
 # misc.
-.log
 logs
 *.log

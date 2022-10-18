@@ -15,9 +15,7 @@ jobs:
           command: shards install
       - run:
           name: "Install client dependencies"
-          command: |
-            cd src
-            npm i
+          command: npm ci
       - run:
           name: "Lint server"
           command: make lint/server

@@ -1,13 +1,13 @@
 PROJECT_NAME = raleigh
-ENTRY_POINT  = src/$(PROJECT_NAME).cr
+SRC_DIR      = src
+ENTRY_POINT  = $(SRC_DIR)/$(PROJECT_NAME).cr
 
-SERVER_SRC_DIR = src
 SERVER_BLD_DIR = dist
 
-CLIENT_SRC_DIR = src
-CLIENT_BLD_DIR = src/assets/build
-CLIENT_CACHE_DIR = $(CLIENT_SRC_DIR)/.parcel-cache
-APP_ASSETS_DIR = src/assets
+CLIENT_BLD_DIR = $(SRC_DIR)/assets/build
+CLIENT_CACHE_DIR = $(SRC_DIR)/.parcel-cache
+
+APP_ASSETS_DIR = $(SRC_DIR)/assets
 
 DOCS_DIR  = docs
 DOCS_PORT = 1337
@@ -45,14 +45,15 @@ playground/serve:
 ## Development Mode     ##
 ## Commands             ##
 
+IGNORE = -R 'node_modules' -R '.parcel-cache' -R 'assets' -R 'lib' -R 'docs'
 .PHONY: watch/server
 watch/server:
 	$(call dev_env)
-	bin/reflex -R 'node_modules' -R '.parcel-cache' -R 'assets' --decoration=fancy -r '\.(cr|ecr)$/' -s -- sh -c "crystal run $(ENTRY_POINT) --progress"
+	bin/reflex $(IGNORE) --decoration=fancy -r '\.(cr|ecr)$/' -s -- sh -c "crystal run $(ENTRY_POINT) --progress"
 
 .PHONY: watch/client
 watch/client:
-	cd $(CLIENT_SRC_DIR) && npm run watch
+	npm run watch
 
 .PHONY: watch/all
 watch/all:
@@ -64,7 +65,7 @@ fmt/server:
 
 .PHONY: fmt/client
 fmt/client:
-	cd $(CLIENT_SRC_DIR) && npm run format
+	npm run format
 
 ## Testing & Linting   ##
 ## Commands            ##
@@ -80,14 +81,14 @@ lint/server:
 .PHONY: lint/client
 lint/client:
 	@echo "Running linters & formatters for client-side code..."
-	cd $(CLIENT_SRC_DIR) && npm run lint
+	npm run lint
 
 ## Production Mode      ##
 ## Commands             ##
 ##
 .PHONY: build/client
 build/client:
-	cd $(CLIENT_SRC_DIR) && npm run build
+	npm run build
 
 .PHONY: build/server
 build/server:
