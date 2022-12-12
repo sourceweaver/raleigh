@@ -1,8 +1,7 @@
 # raleigh
 
 ## Status
-
-[![Build Status](https://dl.circleci.com/status-badge/img/gh/sourceweaver/raleigh/tree/master.svg?style=shield)](https://dl.circleci.com/status-badge/redirect/gh/sourceweaver/raleigh/tree/master)
+[![Build Status](https://github.com/sourceweaver/raleigh/actions/workflows/build.yml/badge.svg)](https://github.com/sourceweaver/raleigh/actions/workflows/build.yml)
 [![Known Vulnerabilities](https://snyk.io/test/github/sourceweaver/raleigh/badge.svg?targetFile=package.json)](https://snyk.io/test/github/sourceweaver/raleigh?targetFile=package.json)
 
 ## Table of Contents
