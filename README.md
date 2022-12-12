@@ -2,7 +2,9 @@
 
 ## Status
 [![Build Status](https://github.com/sourceweaver/raleigh/actions/workflows/build.yml/badge.svg)](https://github.com/sourceweaver/raleigh/actions/workflows/build.yml)
+[![Security Review](https://github.com/sourceweaver/raleigh/actions/workflows/security-review.yml/badge.svg)](https://github.com/sourceweaver/raleigh/actions/workflows/security-review.yml)
 [![Known Vulnerabilities](https://snyk.io/test/github/sourceweaver/raleigh/badge.svg?targetFile=package.json)](https://snyk.io/test/github/sourceweaver/raleigh?targetFile=package.json)
+
 
 ## Table of Contents
 
