@@ -1,5 +1,7 @@
 name: Security Review
 on:
+  push:
+    branches: [master, protected]
   pull_request:
     branches: [master]
 
