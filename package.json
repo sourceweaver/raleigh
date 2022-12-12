@@ -4,8 +4,8 @@
   "scripts": {
     "build": "NODE_ENV=production parcel build ./src/index.js --no-cache --no-source-maps --no-content-hash --dist-dir ./src/assets/build",
     "watch": "rm -rf .parcel-cache && parcel watch ./src/index.js --dist-dir ./src/assets/build",
-    "lint": "npx eslint --color ./src/**/*.{js,jsx}",
-    "format": "npx eslint --fix --color ./src/**/*.{js,jsx}"
+    "lint": "eslint --color ./src/**/*.{js,jsx}",
+    "format": "eslint --fix --color ./src/**/*.{js,jsx}"
   },
   "browserslist": [
     "last 2 Chrome versions"
@@ -14,9 +14,9 @@
   "devDependencies": {
     "@parcel/transformer-sass": "^2.2.1",
     "eslint": "^8.8.0",
-    "eslint-config-standard": "17.0.0-1",
+    "eslint-config-standard": "17.0.0",
     "eslint-plugin-import": "^2.25.4",
-    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-n": "^15.1.0",
     "eslint-plugin-promise": "^6.0.0",
     "parcel": "^2.2.1"
   }

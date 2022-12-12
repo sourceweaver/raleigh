@@ -1,0 +1,27 @@
+on:
+  push:
+  pull_request:
+    branches: [master]
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+    runs-on: ubuntu-latest
+    container:
+      image: crystallang/crystal:1.6.0-alpine
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install system dependencies
+        run: apk add --update --no-cache --force-overwrite nodejs yarn make pcre2-dev
+      - name: Install server dependencies
+        run: shards install
+      - name: Install client dependencies
+        run: yarn install
+      - name: Lint server code
+        run: make lint/server
+      - name: Lint client code
+        run: make lint/client
+      - name: Run all tests
+        run: make run/tests
+      - name: Build project
+        run: make

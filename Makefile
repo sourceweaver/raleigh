@@ -53,7 +53,7 @@ watch/server:
 
 .PHONY: watch/client
 watch/client:
-	npm run watch
+	yarn watch
 
 .PHONY: watch/all
 watch/all:
@@ -65,7 +65,7 @@ fmt/server:
 
 .PHONY: fmt/client
 fmt/client:
-	npm run format
+	yarn format
 
 ## Testing & Linting   ##
 ## Commands            ##
@@ -81,14 +81,14 @@ lint/server:
 .PHONY: lint/client
 lint/client:
 	@echo "Running linters & formatters for client-side code..."
-	npm run lint
+	yarn lint
 
 ## Production Mode      ##
 ## Commands             ##
 ##
 .PHONY: build/client
 build/client:
-	npm run build
+	yarn build
 
 .PHONY: build/server
 build/server:
